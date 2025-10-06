@@ -43,7 +43,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3
-          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          bundle config set --local without 'test'
+          bundle install
 
       - name: Build site
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
