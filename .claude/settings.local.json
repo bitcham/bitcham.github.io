@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle:*)",
+      "Read(//c/Ruby34-arm/lib/ruby/gems/3.4.0/extensions/aarch64-mingw-ucrt/3.4.0/nokogiri-1.18.10/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
