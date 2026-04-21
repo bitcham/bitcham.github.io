@@ -1,0 +1,38 @@
+title: ARCHITECT
+description: Technical notes and personal reflections on backend systems, software architecture, and engineering craft.
+author: bitcham
+url: "https://bitcham.github.io"
+baseurl: ""
+lang: en
+timezone: Europe/Helsinki
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+collections:
+  tech:
+    output: true
+    permalink: /tech/:name/
+  mythought:
+    output: true
+    permalink: /my-thought/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: tech
+    values:
+      layout: post
+      section: Tech
+      section_key: tech
+  - scope:
+      path: ""
+      type: mythought
+    values:
+      layout: post
+      section: MyThought
+      section_key: mythought

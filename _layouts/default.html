@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="light" lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  {% seo title=false %}
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-container": "#ffffff",
+            "primary-container": "#3c3b3b",
+            "on-secondary-fixed": "#1b1b1b",
+            "secondary-fixed": "#c6c6c6",
+            "surface-bright": "#f9f9f9",
+            "outline-variant": "#c6c6c6",
+            "on-primary-fixed": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#f1f1f1",
+            "secondary": "#5e5e5e",
+            "surface-container-low": "#f3f3f3",
+            "on-tertiary-container": "#ffffff",
+            "surface-container": "#eeeeee",
+            "on-tertiary-fixed-variant": "#e2e2e2",
+            "primary-fixed-dim": "#474646",
+            "surface-variant": "#e2e2e2",
+            "surface-tint": "#5f5e5e",
+            "on-error-container": "#410002",
+            "error": "#ba1a1a",
+            "tertiary-fixed": "#5e5e5e",
+            "on-surface": "#1a1c1c",
+            "primary-fixed": "#5f5e5e",
+            "surface": "#f9f9f9",
+            "secondary-fixed-dim": "#ababab",
+            "primary": "#000000",
+            "on-primary-fixed-variant": "#e5e2e1",
+            "background": "#f9f9f9",
+            "on-primary": "#e5e2e1",
+            "secondary-container": "#d4d4d4",
+            "on-secondary": "#ffffff",
+            "tertiary-container": "#747474",
+            "surface-container-high": "#e8e8e8",
+            "on-secondary-container": "#1b1b1b",
+            "surface-dim": "#dadada",
+            "inverse-surface": "#2f3131",
+            "tertiary-fixed-dim": "#474747",
+            "surface-container-highest": "#e2e2e2",
+            "on-tertiary": "#e2e2e2",
+            "on-tertiary-fixed": "#ffffff",
+            "inverse-primary": "#c8c6c5",
+            "on-secondary-fixed-variant": "#3b3b3b",
+            "error-container": "#ffdad6",
+            "outline": "#777777",
+            "on-background": "#1a1c1c",
+            "on-error": "#ffffff",
+            "on-surface-variant": "#474747",
+            "tertiary": "#3b3b3b"
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem"
+          },
+          fontFamily: {
+            headline: ["Space Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link href="{{ '/assets/css/style.css' | relative_url }}" rel="stylesheet">
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col antialiased">
+  {% include header.html %}
+  {{ content }}
+  {% include footer.html %}
+  <script src="{{ '/assets/js/section-filter.js' | relative_url }}" defer></script>
+</body>
+</html>

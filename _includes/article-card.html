@@ -1,0 +1,63 @@
+{% assign post = include.item %}
+{% assign words = post.content | number_of_words %}
+{% assign read_time = words | divided_by: 180 | plus: 1 %}
+
+{% if include.featured %}
+<article class="group flex flex-col gap-6 md:col-span-2 xl:col-span-2 bg-surface-container-lowest p-8 md:p-12 border border-outline-variant/15 rounded-DEFAULT" data-post-card data-date="{{ post.date | date_to_xmlschema }}" data-domain="{{ post.domain | default: '' | upcase }}">
+  <div class="flex flex-col md:flex-row gap-8 md:gap-16 items-start">
+    <div class="flex-grow flex flex-col gap-4">
+      <div class="flex flex-wrap gap-4 items-center text-xs font-label uppercase text-on-surface-variant">
+        <span class="text-primary font-bold">{{ post.domain | default: post.section }}</span>
+        <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+        <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+        <span>{{ post.read_time | default: read_time }} min read</span>
+      </div>
+      <a href="{{ post.url | relative_url }}">
+        <h2 class="font-headline text-3xl font-bold text-primary leading-tight transition-colors duration-300 group-hover:text-secondary max-w-3xl">
+          {{ post.title }}
+        </h2>
+      </a>
+      <p class="font-body text-lg text-on-surface-variant leading-relaxed max-w-4xl mt-2">
+        {{ post.excerpt | default: post.content | strip_html | truncate: 240 }}
+      </p>
+      <div class="mt-4">
+        <a class="inline-flex items-center gap-2 font-label text-sm uppercase font-semibold text-primary underline decoration-2 decoration-outline-variant underline-offset-8 hover:decoration-primary transition-colors" href="{{ post.url | relative_url }}">
+          Read Analysis <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</article>
+{% else %}
+<article class="group flex flex-col gap-6" data-post-card data-date="{{ post.date | date_to_xmlschema }}" data-domain="{{ post.domain | default: '' | upcase }}">
+  <a class="relative w-full aspect-[4/3] bg-surface-container-low overflow-hidden rounded-DEFAULT block" href="{{ post.url | relative_url }}">
+    {% if post.image %}
+    <img alt="{{ post.title | escape }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="{{ post.image | relative_url }}">
+    {% elsif post.code_preview %}
+    <div class="absolute inset-0 bg-primary flex items-center justify-center p-8">
+      <pre class="text-on-primary font-mono text-xs leading-loose overflow-hidden opacity-70"><code>{{ post.code_preview | escape }}</code></pre>
+    </div>
+    {% else %}
+    <div class="absolute inset-0 bg-primary text-on-primary flex items-end p-8">
+      <p class="font-headline text-3xl font-bold leading-tight opacity-90">{{ post.visual_text | default: post.title }}</p>
+    </div>
+    {% endif %}
+  </a>
+  <div class="flex flex-col gap-3">
+    <div class="flex flex-wrap gap-4 items-center text-xs font-label uppercase text-on-surface-variant">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+      <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+      <span>{{ post.read_time | default: read_time }} min read</span>
+    </div>
+    <a href="{{ post.url | relative_url }}">
+      <h2 class="font-headline text-2xl font-bold text-primary leading-snug transition-colors duration-300 group-hover:text-secondary">
+        {{ post.title }}
+      </h2>
+    </a>
+    <p class="font-body text-base text-on-surface-variant leading-relaxed line-clamp-3">
+      {{ post.excerpt | default: post.content | strip_html | truncate: 180 }}
+    </p>
+  </div>
+</article>
+{% endif %}

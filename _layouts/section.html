@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+{% assign posts = site[page.collection_name] | sort: "date" | reverse %}
+
+<main class="flex-grow pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto w-full">
+  <header class="mb-20 flex flex-col gap-6">
+    <p class="font-label text-xs uppercase font-bold text-on-surface-variant">{{ page.eyebrow }}</p>
+    <h1 class="font-headline text-5xl md:text-[4rem] leading-none font-bold text-primary max-w-4xl">{{ page.heading }}</h1>
+    <p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">{{ page.description }}</p>
+  </header>
+
+  <div class="flex flex-col lg:flex-row gap-16" data-section-page>
+    <aside class="w-full lg:w-72 flex-shrink-0">
+      <div class="sticky top-32 flex flex-col gap-8 bg-surface-container-low p-8 rounded-DEFAULT">
+        <div class="flex flex-col gap-4">
+          <h3 class="font-headline font-bold text-sm uppercase text-primary border-b border-outline-variant/15 pb-2">Sort</h3>
+          <select class="form-select w-full bg-surface border-outline-variant text-sm font-label text-primary rounded-sm focus:ring-primary focus:border-primary" data-sort-select>
+            <option value="desc">Latest first</option>
+            <option value="asc">Oldest first</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <h3 class="font-headline font-bold text-sm uppercase text-primary border-b border-outline-variant/15 pb-2">Period</h3>
+          <div class="grid grid-cols-2 gap-2" data-period-filter>
+            <button class="px-3 py-2 bg-primary text-on-primary text-xs font-label uppercase font-bold rounded-sm transition-colors" data-period-button="all" type="button" aria-pressed="true">All</button>
+            <button class="px-3 py-2 bg-surface border border-outline-variant/20 text-on-surface-variant text-xs font-label uppercase font-bold rounded-sm hover:bg-surface-container-highest transition-colors" data-period-button="12" type="button" aria-pressed="false">1 Year</button>
+            <button class="px-3 py-2 bg-surface border border-outline-variant/20 text-on-surface-variant text-xs font-label uppercase font-bold rounded-sm hover:bg-surface-container-highest transition-colors" data-period-button="6" type="button" aria-pressed="false">6 Months</button>
+            <button class="px-3 py-2 bg-surface border border-outline-variant/20 text-on-surface-variant text-xs font-label uppercase font-bold rounded-sm hover:bg-surface-container-highest transition-colors" data-period-button="3" type="button" aria-pressed="false">3 Months</button>
+          </div>
+        </div>
+
+        {% if page.show_domains %}
+        <div class="flex flex-col gap-4">
+          <h3 class="font-headline font-bold text-sm uppercase text-primary border-b border-outline-variant/15 pb-2">Domains</h3>
+          <div class="flex flex-col gap-3 font-label text-sm" data-domain-filter>
+            {% assign domains = "ALL,AI,BACKEND,CS" | split: "," %}
+            {% for domain in domains %}
+            <label class="flex items-center gap-3 cursor-pointer group">
+              <input {% if domain == "ALL" %}checked{% endif %} class="peer form-checkbox h-4 w-4 text-primary bg-surface border-outline-variant rounded-sm focus:ring-primary focus:ring-offset-surface" data-domain-checkbox type="checkbox" value="{{ domain }}">
+              <span class="peer-checked:text-primary peer-checked:font-medium group-hover:text-primary transition-colors text-on-surface-variant">{{ domain }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </aside>
+
+    <section class="flex-grow">
+      {% if posts.size > 0 %}
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-x-8 gap-y-16" data-article-grid>
+        {% for post in posts %}
+          {% assign featured = false %}
+          {% if forloop.index == 3 %}
+            {% assign featured = true %}
+          {% endif %}
+          {% include article-card.html item=post featured=featured %}
+        {% endfor %}
+      </div>
+      <div class="hidden mt-20 bg-surface-container-low p-10 rounded-DEFAULT text-center" data-empty-state>
+        <p class="font-headline text-2xl font-bold text-primary">No posts found</p>
+        <p class="mt-3 text-on-surface-variant">Try a wider period or a different domain.</p>
+      </div>
+      {% else %}
+      <div class="bg-surface-container-low p-10 rounded-DEFAULT text-center">
+        <p class="font-headline text-2xl font-bold text-primary">No posts yet</p>
+        <p class="mt-3 text-on-surface-variant">Add a Markdown file to the collection directory and push to publish.</p>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</main>

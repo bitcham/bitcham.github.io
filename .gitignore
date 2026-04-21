@@ -1,0 +1,17 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/bundle/
+templates/
+
+# Local environment and logs
+.env
+.env.*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

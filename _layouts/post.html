@@ -1,0 +1,96 @@
+---
+layout: default
+---
+
+{% assign section_url = "/tech/" %}
+{% if page.collection == "mythought" %}
+  {% assign section_url = "/my-thought/" %}
+{% endif %}
+{% assign words = content | number_of_words %}
+{% assign read_time = words | divided_by: 180 | plus: 1 %}
+{% assign collection_posts = site[page.collection] | sort: "date" | reverse %}
+{% assign current_index = 0 %}
+{% for item in collection_posts %}
+  {% if item.url == page.url %}
+    {% assign current_index = forloop.index0 %}
+  {% endif %}
+{% endfor %}
+{% assign older_index = current_index | plus: 1 %}
+{% assign newer_index = current_index | minus: 1 %}
+{% assign previous_post = false %}
+{% assign next_post = false %}
+{% for item in collection_posts %}
+  {% if forloop.index0 == older_index %}
+    {% assign previous_post = item %}
+  {% endif %}
+  {% if forloop.index0 == newer_index %}
+    {% assign next_post = item %}
+  {% endif %}
+{% endfor %}
+
+<main class="max-w-[1920px] mx-auto pb-32 flex-grow w-full">
+  <article class="w-full">
+    <header class="px-8 md:px-16 lg:px-32 xl:px-64 pt-40 pb-24 md:pb-32">
+      <a class="inline-flex items-center gap-2 font-label text-xs uppercase font-bold text-on-surface-variant hover:text-primary transition-colors mb-10" href="{{ section_url | relative_url }}">
+        <span class="material-symbols-outlined text-base">arrow_back</span>
+        {{ page.section }}
+      </a>
+
+      <div class="flex flex-wrap gap-4 items-center text-surface-tint font-label text-sm uppercase mb-8">
+        <span class="text-primary font-bold">{{ page.section }}</span>
+        {% if page.domain %}
+        <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+        <span>{{ page.domain }}</span>
+        {% endif %}
+      </div>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-none text-primary max-w-5xl">
+        {{ page.title }}
+      </h1>
+      <div class="mt-8 flex flex-wrap gap-4 items-center text-surface-tint font-label text-sm">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+        <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+        <span>{{ page.views | default: 0 }} views</span>
+        <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+        <span>{{ page.read_time | default: read_time }} min read</span>
+      </div>
+    </header>
+
+    <div class="post-content max-w-3xl mx-auto px-8 lg:px-0 text-lg leading-relaxed text-on-surface/90">
+      {{ content }}
+    </div>
+
+    {% if page.tags %}
+    <footer class="max-w-3xl mx-auto px-8 lg:px-0 mt-16 pt-8 border-t border-outline-variant/20 flex flex-wrap gap-2">
+      {% for tag in page.tags %}
+      <span class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-xs font-label uppercase rounded-sm">{{ tag }}</span>
+      {% endfor %}
+    </footer>
+    {% endif %}
+  </article>
+
+  {% if previous_post or next_post %}
+  <section class="mt-48 px-8 md:px-16 lg:px-32 xl:px-64 max-w-[1920px] mx-auto border-t border-surface-variant pt-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8">
+      {% if previous_post %}
+      <a class="group flex flex-col items-start text-left" href="{{ previous_post.url | relative_url }}">
+        <span class="text-xs font-label uppercase text-surface-tint mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">arrow_backward</span> Previous
+        </span>
+        <h4 class="text-2xl md:text-3xl font-headline font-bold text-primary leading-tight group-hover:text-surface-tint transition-colors duration-300">{{ previous_post.title }}</h4>
+      </a>
+      {% else %}
+      <div></div>
+      {% endif %}
+
+      {% if next_post %}
+      <a class="group flex flex-col items-start md:items-end text-left md:text-right" href="{{ next_post.url | relative_url }}">
+        <span class="text-xs font-label uppercase text-surface-tint mb-4 flex items-center gap-2">
+          Next <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </span>
+        <h4 class="text-2xl md:text-3xl font-headline font-bold text-primary leading-tight group-hover:text-surface-tint transition-colors duration-300">{{ next_post.title }}</h4>
+      </a>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+</main>
