@@ -1,4 +1,4 @@
-# ARCHITECT
+# Blog
 
 Jekyll blog for GitHub Pages with two writing sections:
 
@@ -7,15 +7,15 @@ Jekyll blog for GitHub Pages with two writing sections:
 
 ## Write a Tech post
 
-Create a file like `_tech/2026-04-21-kotlin-coroutines.md`.
+Create a file like `_tech/YYYY-MM-DD-post-slug.md`.
 
 ```yaml
 ---
-title: "Kotlin Coroutines in Backend Systems"
+title: "Post Title"
 date: 2026-04-21 10:00:00 +0200
 domain: BACKEND
 tags: [kotlin, backend, coroutine]
-excerpt: "A practical note on coroutine boundaries in backend services."
+excerpt: "A short summary for the article card."
 views: 0
 ---
 ```
@@ -28,14 +28,14 @@ AI, BACKEND, CS
 
 ## Write a MyThought post
 
-Create a file like `_mythought/2026-04-21-why-i-write.md`.
+Create a file like `_mythought/YYYY-MM-DD-post-slug.md`.
 
 ```yaml
 ---
-title: "Why I Write About Engineering"
+title: "Post Title"
 date: 2026-04-21 10:00:00 +0200
 tags: [writing, craft]
-excerpt: "A personal note on writing as a developer."
+excerpt: "A short summary for the article card."
 views: 0
 ---
 ```
@@ -45,11 +45,11 @@ views: 0
 Store images under `assets/images`. The recommended structure is one folder per post:
 
 ```text
-assets/images/tech/2026-04-21-kotlin-coroutines/
+assets/images/tech/YYYY-MM-DD-post-slug/
   request-scope.png
   cancellation-flow.png
 
-assets/images/mythought/2026-04-21-why-i-write/
+assets/images/mythought/YYYY-MM-DD-post-slug/
   desk-note.png
 ```
 
@@ -74,20 +74,20 @@ image (1).png
 To show an image inside a post:
 
 ```markdown
-![Request scope diagram](/assets/images/tech/2026-04-21-kotlin-coroutines/request-scope.png)
+![Image description](/assets/images/tech/YYYY-MM-DD-post-slug/image-name.png)
 ```
 
 To use an image as the article card thumbnail, add `image` to the front matter:
 
 ```yaml
 ---
-title: "Kotlin Coroutines in Backend Systems"
+title: "Post Title"
 date: 2026-04-21 10:00:00 +0200
 domain: BACKEND
 tags: [kotlin, backend, coroutine]
-excerpt: "A practical note on coroutine boundaries in backend services."
+excerpt: "A short summary for the article card."
 views: 0
-image: /assets/images/tech/2026-04-21-kotlin-coroutines/request-scope.png
+image: /assets/images/tech/YYYY-MM-DD-post-slug/image-name.png
 ---
 ```
 
@@ -101,8 +101,8 @@ For captions, use HTML inside Markdown:
 
 ```html
 <figure>
-  <img src="/assets/images/tech/2026-04-21-kotlin-coroutines/request-scope.png" alt="Request scope diagram">
-  <figcaption>Request-scoped child coroutines managed under structured concurrency.</figcaption>
+  <img src="/assets/images/tech/YYYY-MM-DD-post-slug/image-name.png" alt="Image description">
+  <figcaption>Short caption for the image.</figcaption>
 </figure>
 ```
 
