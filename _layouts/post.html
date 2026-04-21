@@ -49,8 +49,6 @@ layout: default
       <div class="mt-8 flex flex-wrap gap-4 items-center text-surface-tint font-label text-sm">
         <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
         <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
-        <span>{{ page.views | default: 0 }} views</span>
-        <span class="w-1 h-1 rounded-full bg-outline-variant/50"></span>
         <span>{{ page.read_time | default: read_time }} min read</span>
       </div>
     </header>

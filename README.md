@@ -12,11 +12,10 @@ Create a file like `_tech/YYYY-MM-DD-post-slug.md`.
 ```yaml
 ---
 title: "Post Title"
-date: 2026-04-21 10:00:00 +0200
+date: 2026-04-21 10:00:00 +0300
 domain: BACKEND
 tags: [kotlin, backend, coroutine]
 excerpt: "A short summary for the article card."
-views: 0
 ---
 ```
 
@@ -33,10 +32,9 @@ Create a file like `_mythought/YYYY-MM-DD-post-slug.md`.
 ```yaml
 ---
 title: "Post Title"
-date: 2026-04-21 10:00:00 +0200
+date: 2026-04-21 10:00:00 +0300
 tags: [writing, craft]
 excerpt: "A short summary for the article card."
-views: 0
 ---
 ```
 
@@ -82,11 +80,10 @@ To use an image as the article card thumbnail, add `image` to the front matter:
 ```yaml
 ---
 title: "Post Title"
-date: 2026-04-21 10:00:00 +0200
+date: 2026-04-21 10:00:00 +0300
 domain: BACKEND
 tags: [kotlin, backend, coroutine]
 excerpt: "A short summary for the article card."
-views: 0
 image: /assets/images/tech/YYYY-MM-DD-post-slug/image-name.png
 ---
 ```
