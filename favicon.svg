@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Bitcham favicon">
+  <rect width="64" height="64" fill="#f9f9f9"/>
+  <path fill="#000000" d="M15 12h20c9 0 15 5 15 13 0 5-2 9-7 11 6 2 9 6 9 13 0 9-7 15-17 15H15V12Zm12 10v10h7c4 0 7-2 7-5s-3-5-7-5h-7Zm0 19v11h8c5 0 8-2 8-6s-3-5-8-5h-8Z"/>
+  <path fill="none" stroke="#000000" stroke-width="3" d="M8 8h48v48H8z"/>
+</svg>
